@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "csharp-projeto-musical", "csharp-projeto-musical.csproj", "{7AF80D91-4715-440B-ACC1-8A9FDF9F9766}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScreenSound", "ScreenSound.csproj", "{AD0C312D-F685-4A2B-B31A-D2C5C99C945F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7AF80D91-4715-440B-ACC1-8A9FDF9F9766}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7AF80D91-4715-440B-ACC1-8A9FDF9F9766}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7AF80D91-4715-440B-ACC1-8A9FDF9F9766}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7AF80D91-4715-440B-ACC1-8A9FDF9F9766}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD0C312D-F685-4A2B-B31A-D2C5C99C945F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD0C312D-F685-4A2B-B31A-D2C5C99C945F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD0C312D-F685-4A2B-B31A-D2C5C99C945F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD0C312D-F685-4A2B-B31A-D2C5C99C945F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {FDD2EE5D-8A60-49D4-9D63-7BCBC0384656}
+		SolutionGuid = {D759245D-3128-4DFC-9E40-E65CE64B5ACC}
 	EndGlobalSection
 EndGlobal

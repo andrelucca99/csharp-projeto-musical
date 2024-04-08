@@ -1,1 +1,1 @@
-<h1>Repositótio de estudos, em C#</h1>
+<h1>Repositótio de estudos em C#</h1>

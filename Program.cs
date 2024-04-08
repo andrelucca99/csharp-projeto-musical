@@ -1,64 +1,36 @@
-﻿using ScreenSound.Menus;
-using ScreenSound.Modelos;
+﻿using System.Text.Json;
+using ScreenSound_04_api.Filtros;
+using ScreenSound_04_api.Modelos;
 
-Banda ira = new Banda("Ira!");
-ira.AdicionarNota(new Avaliacao(10));
-ira.AdicionarNota(new Avaliacao(8));
-ira.AdicionarNota(new Avaliacao(6));
-Banda beatles = new("The Beatles");
-
-Dictionary<string, Banda> bandasRegistradas = new();
-bandasRegistradas.Add(ira.Nome, ira);
-bandasRegistradas.Add(beatles.Nome, beatles);
-
-Dictionary<int, Menu> opcoes = new();
-opcoes.Add(1, new MenuRegistrarBanda());
-opcoes.Add(2, new MenuRegistrarAlbum());
-opcoes.Add(3, new MenuMostrarBandasRegistradas());
-opcoes.Add(4, new MenuAvaliarBanda());
-opcoes.Add(5, new MenuAvaliarAlbum());
-opcoes.Add(6, new MenuExibirDetalhes());
-opcoes.Add(-1, new MenuSair());
-
-void ExibirLogo()
+using (HttpClient client = new HttpClient())
 {
-  Console.WriteLine(@"
-
-░██████╗░█████╗░██████╗░███████╗███████╗███╗░░██╗  ░██████╗░█████╗░██╗░░░██╗███╗░░██╗██████╗░
-██╔════╝██╔══██╗██╔══██╗██╔════╝██╔════╝████╗░██║  ██╔════╝██╔══██╗██║░░░██║████╗░██║██╔══██╗
-╚█████╗░██║░░╚═╝██████╔╝█████╗░░█████╗░░██╔██╗██║  ╚█████╗░██║░░██║██║░░░██║██╔██╗██║██║░░██║
-░╚═══██╗██║░░██╗██╔══██╗██╔══╝░░██╔══╝░░██║╚████║  ░╚═══██╗██║░░██║██║░░░██║██║╚████║██║░░██║
-██████╔╝╚█████╔╝██║░░██║███████╗███████╗██║░╚███║  ██████╔╝╚█████╔╝╚██████╔╝██║░╚███║██████╔╝
-╚═════╝░░╚════╝░╚═╝░░╚═╝╚══════╝╚══════╝╚═╝░░╚══╝  ╚═════╝░░╚════╝░░╚═════╝░╚═╝░░╚══╝╚═════╝░
-");
-  Console.WriteLine("Boas vindas ao Screen Sound 2.0!");
-}
-
-void ExibirOpcoesDoMenu()
-{
-  ExibirLogo();
-  Console.WriteLine("\nDigite 1 para registrar uma banda");
-  Console.WriteLine("Digite 2 para registrar o álbum de uma banda");
-  Console.WriteLine("Digite 3 para mostrar todas as bandas");
-  Console.WriteLine("Digite 4 para avaliar uma banda");
-  Console.WriteLine("Digite 5 para avaliar um álbum");
-  Console.WriteLine("Digite 6 para exibir os detalhes de uma banda");
-  Console.WriteLine("Digite -1 para sair");
-
-  Console.Write("\nDigite a sua opção: ");
-  string opcaoEscolhida = Console.ReadLine()!;
-  int opcaoEscolhidaNumerica = int.Parse(opcaoEscolhida);
-
-  if (opcoes.ContainsKey(opcaoEscolhidaNumerica))
+  try
   {
-    Menu menuASerExibido = opcoes[opcaoEscolhidaNumerica];
-    menuASerExibido.Executar(bandasRegistradas);
-    if (opcaoEscolhidaNumerica > 0) ExibirOpcoesDoMenu();
+    string resposta = await client.GetStringAsync("https://guilhermeonrails.github.io/api-csharp-songs/songs.json");
+    var musicas = JsonSerializer.Deserialize<List<Musica>>(resposta)!;
+
+    LinqFilter.FiltrarMusicasEmCSharp(musicas);
+
+    // musicas[1].ExibirDetalhesDaMusica();
+    // LinqFilter.FiltrarTodosOsGenerosMusicais(musicas);
+    // LinqOrder.ExibirListaDeArtistasOrdenados(musicas);
+    // LinqFilter.FiltrarArtistasPorGeneroMusical(musicas, "pop");
+    // LinqFilter.FiltrarMusicasDeUmArtista(musicas, "Katy Perry");
+    // LinqFilter.FiltrarMusicasPeloAno(musicas, 1999);
+
+    // var musicasPreferidasDoDaniel = new MusicasPreferidas("Daniel");
+    // musicasPreferidasDoDaniel.AdicionarMusicasFavoritas(musicas[1]);
+    // musicasPreferidasDoDaniel.AdicionarMusicasFavoritas(musicas[377]);
+    // musicasPreferidasDoDaniel.AdicionarMusicasFavoritas(musicas[4]);
+    // musicasPreferidasDoDaniel.AdicionarMusicasFavoritas(musicas[6]);
+    // musicasPreferidasDoDaniel.AdicionarMusicasFavoritas(musicas[1467]);
+
+    // musicasPreferidasDoDaniel.ExibirMusicasFavoritas();
+    // musicasPreferidasDoDaniel.GerarArquivoJson();
+    // musicasPreferidasDoDaniel.GerarDocumentoTXTComAsMusicasFavoritas();
   }
-  else
+  catch (Exception err)
   {
-    Console.WriteLine("Opção inválida");
+    Console.WriteLine($"erro: {err.Message}");
   }
 }
-
-ExibirOpcoesDoMenu();

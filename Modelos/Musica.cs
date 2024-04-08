@@ -1,31 +1,45 @@
-﻿namespace ScreenSound.Modelos;
+using System.Text.Json.Serialization;
+
+namespace ScreenSound_04_api.Modelos;
 
 internal class Musica
 {
-    public Musica(Banda artista, string nome)
-    {
-        Artista = artista;
-        Nome = nome;
-    }
+  private string[] tonalidades = { "C", "C#", "D", "Eb", "E", "F", "F#", "G", "Ab", "A", "Bb", "B"
+ };
 
-    public string Nome { get; }
-    public Banda Artista { get; }
-    public int Duracao { get; set; }
-    public bool Disponivel { get; set; }
-    public string DescricaoResumida => $"A música {Nome} pertence à banda {Artista}";
-
-    public void ExibirFichaTecnica()
+  [JsonPropertyName("song")]
+  public string? Nome { get; set; }
+  [JsonPropertyName("artist")]
+  public string? Artista { get; set; }
+  [JsonPropertyName("duration_ms")]
+  public int Duracao { get; set; }
+  [JsonPropertyName("genre")]
+  public string? Genero { get; set; }
+  [JsonPropertyName("year")]
+  public string? AnoString { get; set; }
+  [JsonPropertyName("key")]
+  public int Key { get; set; }
+  public string Tonalidade
+  {
+    get
     {
-        Console.WriteLine($"Nome: {Nome}");
-        Console.WriteLine($"Artista: {Artista.Nome}");
-        Console.WriteLine($"Duração: {Duracao}");
-        if (Disponivel)
-        {
-            Console.WriteLine("Disponível no plano.");
-        }
-        else
-        {
-            Console.WriteLine("Adquira o plano Plus+");
-        }
+      return tonalidades[Key];
     }
+  }
+
+  public int Ano
+  {
+    get
+    {
+      return int.Parse(AnoString!);
+    }
+  }
+  public void ExibirDetalhesDaMusica()
+  {
+    Console.WriteLine($"Artista: {Artista}");
+    Console.WriteLine($"Música: {Nome}");
+    Console.WriteLine($"Duração em segundos: {Duracao / 1000}");
+    Console.WriteLine($"Gênero musical: {Genero}");
+    Console.WriteLine($"Tonalidade: {Tonalidade}");
+  }
 }

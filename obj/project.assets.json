@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/andre/Documentos/alura/C#/csharp-projeto-musical/csharp-projeto-musical.csproj",
-      "projectName": "csharp-projeto-musical",
-      "projectPath": "/home/andre/Documentos/alura/C#/csharp-projeto-musical/csharp-projeto-musical.csproj",
+      "projectUniqueName": "/home/andre/Documentos/alura/C#/csharp-projeto-musical/consumindo_api.csproj",
+      "projectName": "consumindo_api",
+      "projectPath": "/home/andre/Documentos/alura/C#/csharp-projeto-musical/consumindo_api.csproj",
       "packagesPath": "/home/andre/.nuget/packages/",
       "outputPath": "/home/andre/Documentos/alura/C#/csharp-projeto-musical/obj/",
       "projectStyle": "PackageReference",
